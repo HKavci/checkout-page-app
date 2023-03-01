@@ -11,13 +11,12 @@ const Button = ({item, getData}) => {
     
     const plusAmount = (id) => {
         setQuantity(quantity + 1)
-        console.log(id);
         editAmount(id, quantity+1)
     }
     
     const minusAmount = (id) => {
-        amount > 1 && setQuantity(quantity - 1)
-        editAmount(id, quantity-1)
+        if (quantity >= 1) { setQuantity(quantity - 1)
+        editAmount(id, quantity-1)}
     }
     
     const BASE_URL = "https://63f87f376978b1f9105aade9.mockapi.io/api/checkout"
@@ -39,7 +38,7 @@ const Button = ({item, getData}) => {
         }
         getData()
     }
-    
+    console.log(item);
   return (
     <div className='text-center'>
         <p className='d-flex flex-row border border-dark rounded p-1 align-items-center justify-content-center gap-3'>
@@ -51,7 +50,7 @@ const Button = ({item, getData}) => {
             <BsTrash />
             Remove
         </button>
-        <p><b>Product Total:</b> {(amount*dampingRate*price).toFixed(2)} $</p>
+        <p><b>Product Total:</b> {(quantity*dampingRate*price).toFixed(2)} $</p>
     </div>
   )
 }
